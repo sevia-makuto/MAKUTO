@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        .container{
+            margin: 200px;
+            box-shadow: 10px 5px 5px black;
+            width: 400px;
+            height: 250px;
+            border: 4px solid black;
+            border-radius: 8px;
+        
+        }
+        .dis{
+            font-size: 80px;
+            padding-left: 40px;
+        }
+        .h1{
+            padding-left: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            margin-top:20px ;
+            margin-left: 20px;
+        }
+       button{
+        margin-left: 40px;
+        width: 80px;
+        height: 40px;
+        border-radius: 4px;
+       }
+       #start{
+        background-color: blue;
+        color: aliceblue;
+       }
+       #pause{
+        background-color: green;
+        color: aliceblue;
+
+       }
+       #reset{
+        background-color: red;
+        color: aliceblue;
+
+       }
+       button:hover{
+        cursor: pointer;
+        background-color: aquamarine;
+       }
+       p{
+        display: none;
+        background-color: aquamarine;
+        color:black;
+        padding: 2px;
+        font-size: xx-small;
+
+       }
+       div:hover p{
+        display: block;
+       }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="h1"><h1>PROFESSOR'S WATCH </h1><p>keep time </p></div>
+        <div id="display" class="dis">00:00:00</div>
+
+        <button id="start" onclick="start()">START</button>
+         <button id="pause" onclick="pause()">PAUSE</button>
+          <button id="reset" onclick="reset()">RESET</button>
+ </div>
+ <script>
+        let hours=0;
+        let minutes=0;
+        let seconds=0;
+        let timer=null;
+    function updateDisplay(){
+        let h=hours<10?"0"+hours:hours;
+        let m= minutes<10?"0"+minutes:minutes;
+        let s= seconds <10?"0"+seconds:seconds;
+        document.getElementById("display").innerText=h+":"+m +":" +s;
+
+
+        
+    }
+    function start(){
+            if(timer !== null) return;
+
+    timer = setInterval(function(){
+        seconds++;
+
+        if(seconds == 60){
+            seconds = 0;
+            minutes++;
+        }
+
+        if(minutes == 60){
+            minutes = 0;
+            hours++;
+        }
+
+        updateDisplay();
+
+    },1000);
+}
+function pause(){
+    clearInterval(timer);
+    timer=null;
+}function reset(){
+    clearInterval(timer);
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+
+    updateDisplay();
+}
+
+
+ </script>
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
